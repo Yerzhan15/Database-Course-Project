@@ -33,6 +33,7 @@ public class Application extends Controller {
             user.email = rs.getString("userEmail");
             user.profileUrl = rs.getString("profileUrl");
     		users.add(user);
+            System.out.println("yahoo!");
     	}
     	render(className + "/index.html", users);
     }
