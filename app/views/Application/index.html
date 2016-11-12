@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+<body align = "center">
+#{list items:users, as:'user'}
+	<hr>
+	<div> ${user.email} </div>
+    <div> <b> ${user.name} ${user.surname} </b> </div>
+    <img src= ${user.profileUrl} style = "width: 30%">
+#{/list}
+</body>
+</html>
