@@ -14,4 +14,8 @@ GET     /public/                                staticDir:public
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
-GET		/extraPage/{id}								Application.show	
+GET 	/home 									Application.index
+GET		/articles								Application.show
+GET		/pages									Application.show2
+
+GET     /admin     Application.redirect(url:'/admin/index.html')

@@ -6,16 +6,18 @@ public class User {
 	public String name;
 	public String surname;
 	public String profileUrl;
+	public String password;
 
 	// constructor
 	public User() {
-		
+
 	}
-	public User(int id, String email, String name, String surname, String profileUrl) {
+	public User(int id, String email, String password, String name, String surname, String profileUrl) {
 		this.id = id;
 		this.email = email;
 		this.name = name;
 		this.surname = surname;
+		this.password = password;
 		this.profileUrl = profileUrl;
 	}
 }
