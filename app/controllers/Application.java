@@ -15,8 +15,8 @@ public class Application extends Controller {
 	static String className = "Application";
 	static UserManager manager = new UserManager();
 
-    public static void index() throws SQLException {
-    	render(className + "/index.html");
+    public static void index() {
+    	render();
     }
 
     public static void createUser(String userName, String userSurname, String userEmail, String userPassword) {
@@ -28,22 +28,21 @@ public class Application extends Controller {
 		}
     }
 
-	public static void loginUser(String userEmail, String userPassword) throws SQLException {
+	public static void loginUser(String userEmail, String userPassword) {
 		try {
-			if (manager.login(userEmail, userPassword)) {
-				System.out.println("Success!");
-				System.out.println("Success2!");
-				redirect("http://www.google.com");
+			System.out.println(userEmail + " " + userPassword);
+			int loginResult = manager.login(userEmail, userPassword);
+			if (loginResult != -1) {
+				Authorization.loggedIn = true;
+				Authorization.userID = loginResult;
+				System.out.println(loginResult);
+				renderText("success");
 			}	else {
-				System.out.println("Fail to login!");
+				Authorization.loggedIn = false;
+				renderText("error");
 			}
-		}	 catch (Exception e) {
-			System.out.println(e);
+		} catch (Exception e) {
+			renderText("error");
 		}
-		System.out.println("Success3!");
 	}
-
-	public static void redirect(String url) {
-        redirect(url, true);
-    }
 }
