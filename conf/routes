@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       LoginController.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -14,8 +14,8 @@ GET     /public/                                staticDir:public
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
-GET 	/home 									Application.index
-GET		/articles								Application.show
-GET		/pages									Application.show2
+GET 	/login 									LoginController.index
+
+GET     /imageUpload                            ImageUpload.index
 
 GET     /admin     Application.redirect(url:'/admin/index.html')

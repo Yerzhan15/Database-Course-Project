@@ -20,4 +20,8 @@ public class User {
 		this.password = password;
 		this.profileUrl = profileUrl;
 	}
+
+	public String toString() {
+		return id + " " + email + " " + name + " " + surname;
+	}
 }

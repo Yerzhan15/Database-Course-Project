@@ -11,9 +11,8 @@ import java.sql.SQLException;
 
 import models.*;
 
-public class Application extends Controller {
+public class LoginController extends Controller {
 	static String className = "Application";
-	static UserManager manager = new UserManager();
 
     public static void index() {
     	render();
@@ -21,28 +20,27 @@ public class Application extends Controller {
 
     public static void createUser(String userName, String userSurname, String userEmail, String userPassword) {
 		User user = new User(12, userEmail, userPassword, userName, userSurname, "");
-		try {
-			manager.create(user);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		UserManager.create(user);
+		loginUser(userEmail, userPassword);
     }
 
 	public static void loginUser(String userEmail, String userPassword) {
 		try {
-			System.out.println(userEmail + " " + userPassword);
-			int loginResult = manager.login(userEmail, userPassword);
-			if (loginResult != -1) {
-				Authorization.loggedIn = true;
-				Authorization.userID = loginResult;
-				System.out.println(loginResult);
+			System.out.println("Logging in" + userEmail + " " + userPassword);
+			UserManager.login(userEmail, userPassword);
+			if (UserManager.signed()) {
 				renderText("success");
 			}	else {
-				Authorization.loggedIn = false;
 				renderText("error");
 			}
 		} catch (Exception e) {
 			renderText("error");
 		}
 	}
+
+	public static void logoutUser() {
+		UserManager.logout();
+		renderText("successOnLogout");
+	}
+
 }

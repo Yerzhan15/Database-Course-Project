@@ -16,11 +16,14 @@ public class HomePage extends Controller {
 
 	@Before
 	public static void checkAuthorized() {
-		if (!Authorization.loggedIn)
-			Application.index();
+		if (!UserManager.signed()) {
+			System.out.println("User is not signed");
+			LoginController.index();
+		}
 	}
 
     public static void index() {
+		System.out.println(UserManager.currentUser);
 		List <Item> items = downloadItems();
 		render(className + "/index.html", items);
     }
@@ -28,7 +31,7 @@ public class HomePage extends Controller {
 
 	public static void addItem(String name, String type, String size, String description) throws SQLException {
 		Connection conn = DB.getConnection();
-		String query = "INSERT INTO `DatabaseProject`.`Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`) VALUES (NULL, '" + Authorization.userID + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + description + "');";
+		String query = "INSERT INTO `DatabaseProject`.`Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + description + "');";
 		System.out.println(query);
 		conn.createStatement().executeUpdate(query);
 	}
@@ -38,7 +41,7 @@ public class HomePage extends Controller {
 		List<Item> items = new ArrayList<>();
 		try {
 			Connection conn = DB.getConnection();
-	    	String query = "select * FROM Items WHERE UID = " + Authorization.userID + ";";
+	    	String query = "select * FROM Items WHERE UID = " + UserManager.currentUser.id + ";";
 	    	ResultSet rs = conn.createStatement().executeQuery(query);
 	        // going through the results
 	    	while (rs.next()) {
@@ -51,8 +54,4 @@ public class HomePage extends Controller {
 		}
 		return items;
 	}
-
-    private static boolean authorized() {
-    	return false;
-    }
 }
