@@ -38,7 +38,7 @@ public class HomePage extends Controller {
 
 	public static List<Item> downloadItems() {
 		// Database connection
-		List<Item> items = new ArrayList<>();
+		List<Item> items = new ArrayList<?>();
 		try {
 			Connection conn = DB.getConnection();
 	    	String query = "select * FROM Items WHERE UID = " + UserManager.currentUser.id + ";";
