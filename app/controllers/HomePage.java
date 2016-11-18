@@ -28,10 +28,10 @@ public class HomePage extends Controller {
 		render(className + "/index.html", items);
     }
 
-
 	public static void addItem(String name, String type, String size, String description) throws SQLException {
 		Connection conn = DB.getConnection();
 		String query = "INSERT INTO `DatabaseProject`.`Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + description + "');";
+		System.out.println(query);
 		System.out.println(query);
 		conn.createStatement().executeUpdate(query);
 	}
