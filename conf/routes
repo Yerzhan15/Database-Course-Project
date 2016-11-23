@@ -9,13 +9,17 @@ GET     /                                       LoginController.index
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
+
 GET     /public/                                staticDir:public
+GET     /public/images/uploads/                  staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
 GET 	/login 									LoginController.index
-
-GET     /imageUpload                            ImageUpload.index
+GET		/events 								EventsController.index
+GET		/myitems								MyItemsController.index
+GET		/home 									HomeController.index
+GET 	/addnewitem								AddItemController.index
 
 GET     /admin     Application.redirect(url:'/admin/index.html')

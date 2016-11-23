@@ -1,4 +1,4 @@
-button {
+#logout {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -13,6 +13,156 @@ button {
   cursor: pointer;
 }
 
-button:hover,.form button:active,.form button:focus {
+#logout:hover,.form button:active,.form button:focus {
   background: #43A047;
+}
+
+.cover {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.delete {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #C62D2D;
+  border: 0;
+  float: right;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.showParticipants {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #FA8258;
+  border: 0;
+  float: right;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.registerOnEvent {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #04B404;
+  border: 0;
+  float: right;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin: 2px;
+}
+
+
+/* card design */
+.card {
+    /* Add shadows to create the "card" effect */
+    width: 20;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background: white;
+    margin: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.itemCard {
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.detailText {
+  font-size: 15px;
+}
+ 
+.nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background: #43A047;
+}
+.nav li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+ 
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+.nav a:hover {
+  background-color: #E0F8E0;
+  color: #43A047;
+}
+ 
+.nav a.active {
+  background-color: #E0F8E0;
+  color: #43A047;
+  cursor: default;
+}
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  /* Option 1 - Display Inline */
+  .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+ 
+  /* Options 2 - Float
+  .nav li {
+    float: left;
+  }
+  .nav ul {
+    overflow: auto;
+    width: 600px;
+    margin: 0 auto;
+  }
+  .nav {
+    background-color: #444;
+  }
+  */
 }

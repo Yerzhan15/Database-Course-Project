@@ -4,6 +4,10 @@ import play.*;
 import play.db.DB;
 import play.mvc.*;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.IOException;
+import java.io.File;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,8 +15,8 @@ import java.sql.SQLException;
 
 import models.*;
 
-public class HomePage extends Controller {
-	static String className = "HomePage";
+public class MyItemsController extends Controller {
+	static String className = "MyItemsController";
 
 	@Before
 	public static void checkAuthorized() {
@@ -28,13 +32,19 @@ public class HomePage extends Controller {
 		render(className + "/index.html", items);
     }
 
-	public static void addItem(String name, String type, String size, String description) throws SQLException {
-		Connection conn = DB.getConnection();
-		String query = "INSERT INTO `DatabaseProject`.`Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + description + "');";
-		System.out.println(query);
-		System.out.println(query);
-		conn.createStatement().executeUpdate(query);
-	}
+    public static void deleteItem(String itemId) {
+    	System.out.println(itemId);
+    	try {
+			Connection conn = DB.getConnection();
+			String query = "DELETE FROM `DatabaseProject`.`Items` WHERE `items`.`ID` = " + itemId;
+			System.out.println(query);
+			conn.createStatement().executeUpdate(query);
+			renderText("successOnDelete");
+		}	catch (Exception e) {
+			System.out.println(e);
+			renderText("failOnDelete");
+		}
+    }
 
 	public static List<Item> downloadItems() {
 		// Database connection
@@ -46,7 +56,7 @@ public class HomePage extends Controller {
 	        // going through the results
 	    	while (rs.next()) {
 	    		Item item = new Item(rs.getInt("ID"), rs.getInt("UID"), rs.getString("name"),
-	    			rs.getString("type"), rs.getString("size"), rs.getString("description"), "empty");
+	    			rs.getString("type"), rs.getString("size"), rs.getString("description"), rs.getString("imageUrl"), rs.getString("date"));
 				items.add(item);
 	    	}
 		}	catch (Exception e) {

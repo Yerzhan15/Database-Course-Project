@@ -18,8 +18,8 @@ public class LoginController extends Controller {
     	render();
     }
 
-    public static void createUser(String userName, String userSurname, String userEmail, String userPassword) {
-		User user = new User(12, userEmail, userPassword, userName, userSurname, "");
+    public static void createUser(String userName, String userSurname, String userEmail, String userPhone, String userPassword) {
+		User user = new User(12, userEmail, userPhone, userPassword, userName, userSurname, "");
 		UserManager.create(user);
 		loginUser(userEmail, userPassword);
     }

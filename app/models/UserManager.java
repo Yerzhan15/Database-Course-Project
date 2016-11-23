@@ -15,7 +15,7 @@ public class UserManager {
 	static public void create(User user) {
 		try {
 			Connection conn = DB.getConnection();
-			String query = "INSERT INTO `DatabaseProject`.`Users` (`ID`, `firstName`, `lastName`, `password`, `email`, `profileUrl`) VALUES (NULL, '" + user.name + "', '" + user.surname + "', '" + user.password + "', '" + user.email + "', '" + user.password + "');";
+			String query = "INSERT INTO `DatabaseProject`.`Users` (`ID`, `firstName`, `lastName`, `password`, `email`, `phone`, `profileUrl`) VALUES (NULL, '" + user.name + "', '" + user.surname + "', '" + user.password + "', '" + user.email + "', '" + user.phone + "', '" + user.password + "');";
 			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			currentUser = user;
@@ -31,7 +31,12 @@ public class UserManager {
 		ResultSet rs = conn.createStatement().executeQuery(query);
 		if (rs.next()) {
 			System.out.println("found a user");
-			currentUser = new User(rs.getInt("ID"), rs.getString("email"), rs.getString("password"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("profileUrl"));
+			try {
+				currentUser = new User(rs.getInt("ID"), rs.getString("email"), rs.getString("phone"), rs.getString("password"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("profileUrl"));
+				System.out.println("daskjd");
+			} catch(Exception e) {
+				System.out.println(e);
+			}
 		} else {
 			currentUser = null;
 		}

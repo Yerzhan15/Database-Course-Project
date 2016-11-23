@@ -15,6 +15,7 @@
       <input id = "userName" type="text" placeholder="name"/>
       <input id = "userSurname" type="text" placeholder="surname"/>
       <input id = "userEmail" type="text" placeholder="email address"/>
+      <input id = "userPhone" type="text" placeholder="phone number"/>
       <input id = "userPassword" type="password" placeholder="password"/>
       <button id = "createUser">create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
@@ -35,9 +36,9 @@
   <script type="text/javascript">
 		$('#createUser').click(function(event) {
             event.preventDefault();
-			$.post('@{createUser()}', {userName: $("#userName").val(), userSurname: $("#userSurname").val(), userEmail: $("#userEmail").val(), userPassword: $("#userPassword").val()}).done(function(data) {
+			$.post('@{createUser()}', {userName: $("#userName").val(), userSurname: $("#userSurname").val(), userEmail: $("#userEmail").val(), userPhone: $("#userPhone").val(), userPassword: $("#userPassword").val()}).done(function(data) {
                 if (data == 'success') {
-                    window.location.replace("@{HomePage.index()}");
+                    window.location.replace("@{MyItemsController.index()}");
                 } else if (data == 'error') {
                     alert("Password or username is incorrect");
                 }
@@ -48,7 +49,7 @@
             event.preventDefault();
             $.post('@{loginUser()}', {userEmail: $("#userEmailLogin").val(), userPassword: $("#userPasswordLogin").val()}).done(function(data) {
                 if (data == 'success') {
-                    window.location.replace("@{HomePage.index()}");
+                    window.location.replace("@{MyItemsController.index()}");
                 } else if (data == 'error') {
                     alert("Password or username is incorrect");
                 }
