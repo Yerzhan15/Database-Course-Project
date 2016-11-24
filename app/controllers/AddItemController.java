@@ -48,7 +48,7 @@ public class AddItemController extends Controller {
     			Connection conn = DB.getConnection();
     			Date now = new java.util.Date();
     			String timeStamp = now.toString();
-				String query = "INSERT INTO `DatabaseProject`.`Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`, `date`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + suffix + "', '" + timeStamp + "');";
+				String query = "INSERT INTO `Items` (`ID`, `UID`, `name`, `type`, `size`, `description`, `imageUrl`, `date`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + name + "', '" + type + "', '" + size + "', '" + description + "', '" + suffix + "', '" + timeStamp + "');";
 				System.out.println(query);
 				conn.createStatement().executeUpdate(query);
 				FileUtils.moveFile(photo, new File(destFile));
@@ -66,7 +66,7 @@ public class AddItemController extends Controller {
     	System.out.println(itemId);
     	try {
 			Connection conn = DB.getConnection();
-			String query = "DELETE FROM `DatabaseProject`.`Items` WHERE `items`.`ID` = " + itemId;
+			String query = "DELETE FROM `Items` WHERE `items`.`ID` = " + itemId;
 			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			renderText("successOnDelete");

@@ -49,7 +49,7 @@ public class EventsController extends Controller {
    	public static void registerOnEvent(String eventId) {
    		try {
    			Connection conn = DB.getConnection();
-			String query = "INSERT INTO `DatabaseProject`.`EventUser` (`euid`, `uid`, `eid`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + eventId + "');";
+			String query = "INSERT INTO `EventUser` (`euid`, `uid`, `eid`) VALUES (NULL, '" + UserManager.currentUser.id + "', '" + eventId + "');";
 			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			renderText("successOnRegister");
@@ -62,7 +62,7 @@ public class EventsController extends Controller {
    	public static void deregisterOnEvent(String eventId) {
    		try {
    			Connection conn = DB.getConnection();
-			String query = "DELETE FROM `DatabaseProject`.`EventUser` WHERE uid = " + UserManager.currentUser.id + " and eid = " + eventId + ";";
+			String query = "DELETE FROM `EventUser` WHERE uid = " + UserManager.currentUser.id + " and eid = " + eventId + ";";
 			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			renderText("successOnDeRegister");

@@ -15,7 +15,7 @@ public class UserManager {
 	static public void create(User user) {
 		try {
 			Connection conn = DB.getConnection();
-			String query = "INSERT INTO `DatabaseProject`.`Users` (`ID`, `firstName`, `lastName`, `password`, `email`, `phone`, `profileUrl`) VALUES (NULL, '" + user.name + "', '" + user.surname + "', '" + user.password + "', '" + user.email + "', '" + user.phone + "', '" + user.password + "');";
+			String query = "INSERT INTO `Users` (`ID`, `firstName`, `lastName`, `password`, `email`, `phone`, `profileUrl`) VALUES (NULL, '" + user.name + "', '" + user.surname + "', '" + user.password + "', '" + user.email + "', '" + user.phone + "', '" + user.password + "');";
 			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			currentUser = user;
