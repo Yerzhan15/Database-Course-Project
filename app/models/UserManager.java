@@ -30,10 +30,8 @@ public class UserManager {
 		String query = "select * FROM Users WHERE " + "email = '" + email + "' and password = '" + password + "';";
 		ResultSet rs = conn.createStatement().executeQuery(query);
 		if (rs.next()) {
-			System.out.println("found a user");
 			try {
 				currentUser = new User(rs.getInt("ID"), rs.getString("email"), rs.getString("phone"), rs.getString("password"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("profileUrl"));
-				System.out.println("daskjd");
 			} catch(Exception e) {
 				System.out.println(e);
 			}

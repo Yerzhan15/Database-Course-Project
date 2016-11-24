@@ -20,10 +20,24 @@
       <button id = "createUser">create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
-    <form class="login-form" action="@{LoginController.loginUser}" method="POST">
+
+    <form class="login-form" action="@{LoginController.loginUser}" method="POST" accept-charset="UTF-8">
       <input id = "userEmailLogin" type="text" placeholder="username" name="userEmail"/>
       <input id = "userPasswordLogin" type="password" placeholder="password" name="userPassword"/>
-      <button id = "loginUser">login</button>
+      <input id = "loginUser" style = 'font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #4CAF50;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;'
+        type="submit" value="Login"></input>
+        
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
 
@@ -36,8 +50,8 @@
   <script type="text/javascript">
 		$('#createUser').click(function(event) {
             event.preventDefault();
-			$.post('@{createUser()}', {userName: $("#userName").val(), userSurname: $("#userSurname").val(), userEmail: $("#userEmail").val(), userPhone: $("#userPhone").val(), userPassword: $("#userPassword").val()}).done(function(data) {
-                if (data == 'success') {
+			$.post('@{LoginController.createUser()}', {userName: $("#userName").val(), userSurname: $("#userSurname").val(), userEmail: $("#userEmail").val(), userPhone: $("#userPhone").val(), userPassword: $("#userPassword").val()}).done(function(data) {
+                if (data == 'successOnLogin') {
                     window.location.replace("@{MyItemsController.index()}");
                 } else if (data == 'error') {
                     alert("Password or username is incorrect");
@@ -47,8 +61,8 @@
 
         $('#loginUser').click(function(event) {
             event.preventDefault();
-            $.post('@{loginUser()}', {userEmail: $("#userEmailLogin").val(), userPassword: $("#userPasswordLogin").val()}).done(function(data) {
-                if (data == 'success') {
+            $.post('@{LoginController.loginUser()}', {userEmail: $("#userEmailLogin").val(), userPassword: $("#userPasswordLogin").val()}).done(function(data) {
+                if (data == 'successOnLogin') {
                     window.location.replace("@{MyItemsController.index()}");
                 } else if (data == 'error') {
                     alert("Password or username is incorrect");

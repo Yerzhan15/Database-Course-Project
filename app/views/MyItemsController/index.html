@@ -54,6 +54,8 @@
            $.post('@{MyItemsController.deleteItem ()}', {itemId: $(this).attr("value")}).done(function(data) {
                if (data == 'successOnDelete')
                    window.location.replace("@{MyItemsController.index()}");
+                else
+                  alert("error");
            });
        });
    </script>

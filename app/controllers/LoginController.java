@@ -29,7 +29,7 @@ public class LoginController extends Controller {
 			System.out.println("Logging in" + userEmail + " " + userPassword);
 			UserManager.login(userEmail, userPassword);
 			if (UserManager.signed()) {
-				renderText("success");
+				renderText("successOnLogin");
 			}	else {
 				renderText("error");
 			}
