@@ -58,7 +58,7 @@ public class AddItemController extends Controller {
     		MyItemsController.index();
 		} catch (Exception e) {
 			System.out.println(e);
-			renderText("error");
+			renderText(e);
 		}
     }
 
