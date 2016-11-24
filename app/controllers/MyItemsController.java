@@ -37,7 +37,6 @@ public class MyItemsController extends Controller {
     	try {
 			Connection conn = DB.getConnection();
 			String query = "DELETE FROM Items WHERE ID = " + itemId;
-			System.out.println(query);
 			conn.createStatement().executeUpdate(query);
 			renderText("successOnDelete");
 		}	catch (Exception e) {
